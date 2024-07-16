@@ -24,7 +24,7 @@ public class SignupTwo extends JFrame implements ActionListener {
     public SignupTwo(Long formno) {
 
         this.formno = formno;
-        
+
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/back.jpg"));
         Image i2 = i1.getImage().getScaledInstance(900, 900, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
@@ -71,13 +71,13 @@ public class SignupTwo extends JFrame implements ActionListener {
         occupation.setFont(new Font("Raleway", Font.BOLD, 18));
         image.add(occupation);
 
-        String valOccupation[]={"Self-Employed","Salaried","Businessman","Student"};
+        String valOccupation[] = {"Self-Employed", "Salaried", "Businessman", "Student"};
         occupationTextField = new JComboBox(valOccupation);
         occupationTextField.setBounds(300, 230, 300, 30);
         occupationTextField.setFont(new Font("Arial", Font.BOLD, 18));
         image.add(occupationTextField);
-        
-        String valSalary[]={"Less than 1 Lakh","Less than 2 Lakh","Less than 5 Lakh","More than 5 Lakh"};
+
+        String valSalary[] = {"Less than 1 Lakh", "Less than 2 Lakh", "Less than 5 Lakh", "More than 5 Lakh"};
 
         salary = new JLabel("Salary : ");
         salary.setBounds(100, 280, 300, 30);
@@ -88,8 +88,6 @@ public class SignupTwo extends JFrame implements ActionListener {
         salaryTextField.setBounds(300, 280, 300, 30);
         salaryTextField.setFont(new Font("Arial", Font.BOLD, 18));
         image.add(salaryTextField);
-        
-        
 
         education = new JLabel("Education  : ");
         education.setBounds(100, 330, 300, 30);
@@ -97,7 +95,7 @@ public class SignupTwo extends JFrame implements ActionListener {
         education.setFont(new Font("Raleway", Font.BOLD, 18));
         image.add(education);
 
-        String valEducation[] ={"Graduation","Intermediate","Matriculation"};
+        String valEducation[] = {"Graduation", "Intermediate", "Matriculation"};
         educationTextField = new JComboBox(valEducation);
         educationTextField.setBounds(300, 330, 300, 30);
         educationTextField.setFont(new Font("Arial", Font.BOLD, 18));
@@ -129,7 +127,7 @@ public class SignupTwo extends JFrame implements ActionListener {
         senior.setFont(new Font("Raleway", Font.BOLD, 18));
         image.add(senior);
 
-        String valSeniorCitizen[]={"Yes","No"};
+        String valSeniorCitizen[] = {"Yes", "No"};
         seniorTextField = new JComboBox(valSeniorCitizen);
         seniorTextField.setBounds(300, 480, 300, 30);
         seniorTextField.setFont(new Font("Arial", Font.BOLD, 18));
@@ -140,7 +138,7 @@ public class SignupTwo extends JFrame implements ActionListener {
         existing.setFont(new Font("Raleway", Font.BOLD, 18));
         image.add(existing);
 
-        String valExistingAccount[]={"Yes","No"};
+        String valExistingAccount[] = {"Yes", "No"};
         existingTextField = new JComboBox(valExistingAccount);
         existingTextField.setBounds(300, 530, 300, 30);
         existingTextField.setFont(new Font("Arial", Font.BOLD, 18));
@@ -182,33 +180,27 @@ public class SignupTwo extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String sreligion=""+religionTextField.getSelectedItem();
-        String soccupation=""+occupationTextField.getSelectedItem();
-        String scategory=""+categoryTextField.getSelectedItem();
-        String ssalary=""+salaryTextField.getSelectedItem();
-        String ssenior=""+seniorTextField.getSelectedItem();
-        String sexisting=""+existingTextField.getSelectedItem();
-        String seducation=""+educationTextField.getSelectedItem();
-        String saadharcard=aadharTextField.getText();
-        String spancard=panTextField.getText();
-                
-                
-            if(scategory.isEmpty() || sreligion.isEmpty() || soccupation.isEmpty() || 
-                    ssalary.isEmpty() || seducation.isEmpty()||spancard.isEmpty()
-                    ||saadharcard==null||ssenior.isEmpty()||sexisting.isEmpty()  ){
-            
-                
-                JOptionPane.showMessageDialog(null,"All Fields should be filled ");
+        String sreligion = "" + religionTextField.getSelectedItem();
+        String soccupation = "" + occupationTextField.getSelectedItem();
+        String scategory = "" + categoryTextField.getSelectedItem();
+        String ssalary = "" + salaryTextField.getSelectedItem();
+        String ssenior = "" + seniorTextField.getSelectedItem();
+        String sexisting = "" + existingTextField.getSelectedItem();
+        String seducation = "" + educationTextField.getSelectedItem();
+        String saadharcard = aadharTextField.getText();
+        String spancard = panTextField.getText();
 
-            }
-            else if(check.isSelected())
-            {
-                  JOptionPane.showMessageDialog(null,"Please Check the Delcaration before submit");
-                
-            }
-            else
-            {
-               
+        if (scategory.isEmpty() || sreligion.isEmpty() || soccupation.isEmpty()
+                || ssalary.isEmpty() || seducation.isEmpty() || spancard.isEmpty()
+                || saadharcard == null || ssenior.isEmpty() || sexisting.isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "All Fields should be filled ");
+
+        } else if (check.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Please Check the Delcaration before submit");
+
+        } else {
+
             try {
 
                 Conn conn = new Conn();
@@ -216,15 +208,15 @@ public class SignupTwo extends JFrame implements ActionListener {
                 s = conn.c.prepareStatement(query);
                 s.setString(2, sreligion);
                 s.setLong(1, formno);
-                s.setString(3,scategory);
+                s.setString(3, scategory);
                 s.setString(4, soccupation);
-                s.setString(5, ssalary);  
+                s.setString(5, ssalary);
                 s.setString(8, saadharcard);
                 s.setString(9, ssenior);
                 s.setString(10, sexisting);
                 s.setString(6, seducation);
-                 s.setString(7, spancard);
-              
+                s.setString(7, spancard);
+
                 s.executeUpdate();
 
                 setVisible(false);
@@ -233,17 +225,14 @@ public class SignupTwo extends JFrame implements ActionListener {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
-            
 
         }
-        if(e.getSource() == back)
-        {
+        if (e.getSource() == back) {
             setVisible(false);
-            
+
             new SignupOne().setVisible(true);
-            
+
         }
     }
 
 }
-

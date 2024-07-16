@@ -24,15 +24,13 @@ public class SignupOne extends JFrame implements ActionListener {
 
         Random rand = new Random();
         formno = Math.abs((rand.nextLong() % 9000) + 1000);
-        
-        
+
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/back.jpg"));
         Image i2 = i1.getImage().getScaledInstance(750, 800, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel image = new JLabel(i3);
         image.setBounds(0, 0, 750, 800);
         add(image);
-
 
         JLabel heading1 = new JLabel("Application Form :" + formno);
         heading1.setBounds(200, 10, 400, 40);
@@ -146,7 +144,7 @@ public class SignupOne extends JFrame implements ActionListener {
         stateTextField = new JTextField();
         stateTextField.setBounds(300, 480, 300, 30);
         stateTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        
+
         image.add(stateTextField);
 
         city = new JLabel("City : ");
@@ -205,8 +203,6 @@ public class SignupOne extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        
 
         String name = nameTextField.getText();
         String fname = fnameTextField.getText();
@@ -233,49 +229,42 @@ public class SignupOne extends JFrame implements ActionListener {
 
 //        --------------------------------------------------------------------
         if (e.getSource() == next) {
-            
-            if(name.isEmpty() || fname.isEmpty() || dob.isEmpty() || 
-                    email.isEmpty() || address.isEmpty()||city.isEmpty()
-                    ||gender==null||state.isEmpty()||pin.isEmpty() ||marital==null ){
-            
-                
-                JOptionPane.showMessageDialog(null,"All Fields should be filled ");
 
-            }
-            else if(!check.isSelected())
-            {
-                  JOptionPane.showMessageDialog(null,"Please Check the Delcaration before submit");
-                
-            }
-                
-            
-            else
-            {
-               
-            try {
+            if (name.isEmpty() || fname.isEmpty() || dob.isEmpty()
+                    || email.isEmpty() || address.isEmpty() || city.isEmpty()
+                    || gender == null || state.isEmpty() || pin.isEmpty() || marital == null) {
 
-                Conn conn = new Conn();
-                String query = "insert into signup value(?,?,?,?,?,?,?,?,?,?,?)";
-                s = conn.c.prepareStatement(query);
-                s.setString(2, name);
-                s.setLong(1, formno);
-                s.setString(3, fname);
-                s.setString(4, dob);
-                s.setString(5, email);
-                s.setString(6, gender);
-                s.setString(7, marital);
-                s.setString(8, address);
-                s.setString(9, state);
-                s.setString(10, city);
-                s.setString(11, pin);
-                s.executeUpdate();
+                JOptionPane.showMessageDialog(null, "All Fields should be filled ");
 
-                setVisible(false);
-                new SignupTwo(formno).setVisible(true);
+            } else if (!check.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Please Check the Delcaration before submit");
 
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            } else {
+
+                try {
+
+                    Conn conn = new Conn();
+                    String query = "insert into signup value(?,?,?,?,?,?,?,?,?,?,?)";
+                    s = conn.c.prepareStatement(query);
+                    s.setString(2, name);
+                    s.setLong(1, formno);
+                    s.setString(3, fname);
+                    s.setString(4, dob);
+                    s.setString(5, email);
+                    s.setString(6, gender);
+                    s.setString(7, marital);
+                    s.setString(8, address);
+                    s.setString(9, state);
+                    s.setString(10, city);
+                    s.setString(11, pin);
+                    s.executeUpdate();
+
+                    setVisible(false);
+                    new SignupTwo(formno).setVisible(true);
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
 
         }
