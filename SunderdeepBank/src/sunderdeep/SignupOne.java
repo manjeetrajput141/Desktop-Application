@@ -10,11 +10,11 @@ import java.sql.*;
 public class SignupOne extends JFrame implements ActionListener {
 
     PreparedStatement s;
-    JLabel name, fname, dob, salary, address, city, state, marital, pin, gender;
+    JLabel name, fname, dob, email, address, city, state, marital, pin, gender;
     JRadioButton male, female, married, unmarried;
     JTextField nameTextField, fnameTextField, dobTextField, cityTextField,
             pinTextField,
-            stateTextField, addressTextField, salaryTextField;
+            stateTextField, addressTextField, emailTextField;
 
     JButton next, back;
     Long formno;
@@ -23,74 +23,83 @@ public class SignupOne extends JFrame implements ActionListener {
 
         Random rand = new Random();
         formno = Math.abs((rand.nextLong() % 9000) + 1000);
+        
+        
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/back.jpg"));
+        Image i2 = i1.getImage().getScaledInstance(750, 800, Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image = new JLabel(i3);
+        image.setBounds(0, 0, 750, 800);
+        add(image);
+
 
         JLabel heading1 = new JLabel("Application Form :" + formno);
         heading1.setBounds(200, 10, 400, 40);
         heading1.setFont(new Font("Raleway", Font.BOLD, 30));
-        add(heading1);
+        image.add(heading1);
 
         JLabel formtype = new JLabel("Personal Details ");
         formtype.setBounds(100, 80, 300, 30);
         formtype.setFont(new Font("Raleway", Font.BOLD, 24));
-        add(formtype);
+        image.add(formtype);
 
         name = new JLabel("Name : ");
         name.setBounds(100, 130, 300, 30);
         name.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(name);
+        image.add(name);
 
         nameTextField = new JTextField();
         nameTextField.setBounds(300, 130, 300, 30);
         nameTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        add(nameTextField);
+        image.add(nameTextField);
 
         fname = new JLabel("Father Name : ");
         fname.setBounds(100, 180, 300, 30);
         fname.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(fname);
+        image.add(fname);
 
         fnameTextField = new JTextField();
         fnameTextField.setBounds(300, 180, 300, 30);
         fnameTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        add(fnameTextField);
+        image.add(fnameTextField);
 
         dob = new JLabel("Date Of Birth : ");
         dob.setBounds(100, 230, 300, 30);
         dob.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(dob);
+        image.add(dob);
 
         dobTextField = new JTextField();
         dobTextField.setBounds(300, 230, 300, 30);
         dobTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        add(dobTextField);
+        image.add(dobTextField);
 
-        salary = new JLabel("Salary : ");
-        salary.setBounds(100, 280, 300, 30);
-        salary.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(salary);
+        email = new JLabel("Email");
+        email.setBounds(100, 280, 300, 30);
+        email.setFont(new Font("Raleway", Font.BOLD, 18));
+        image.add(email);
 
-        salaryTextField = new JTextField();
-        salaryTextField.setBounds(300, 280, 300, 30);
-        salaryTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        add(salaryTextField);
+        emailTextField = new JTextField();
+        emailTextField.setBounds(300, 280, 300, 30);
+        emailTextField.setFont(new Font("Arial", Font.BOLD, 18));
+        image.add(emailTextField);
 
         gender = new JLabel("Gender : ");
         gender.setBounds(100, 330, 300, 30);
         gender.setBackground(Color.WHITE);
         gender.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(gender);
+        image.add(gender);
 
         male = new JRadioButton("Male  ");
         male.setBounds(300, 330, 100, 30);
         male.setBackground(Color.WHITE);
         male.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(male);
+        image.add(male);
 
         female = new JRadioButton("Female  ");
         female.setBounds(450, 330, 200, 30);
         female.setBackground(Color.WHITE);
         female.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(female);
+        image.add(female);
 
         ButtonGroup bg = new ButtonGroup();
         bg.add(male);
@@ -100,19 +109,19 @@ public class SignupOne extends JFrame implements ActionListener {
         marital.setBounds(100, 380, 300, 30);
         marital.setBackground(Color.WHITE);
         marital.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(marital);
+        image.add(marital);
 
         married = new JRadioButton("Married  ");
         married.setBounds(300, 380, 130, 30);
         married.setBackground(Color.WHITE);
         married.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(married);
+        image.add(married);
 
         unmarried = new JRadioButton("Unmarried ");
         unmarried.setBounds(450, 380, 200, 30);
         unmarried.setBackground(Color.WHITE);
         unmarried.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(unmarried);
+        image.add(unmarried);
 
         ButtonGroup bg1 = new ButtonGroup();
         bg1.add(married);
@@ -121,48 +130,48 @@ public class SignupOne extends JFrame implements ActionListener {
         address = new JLabel("Address : ");
         address.setBounds(100, 430, 300, 30);
         address.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(address);
+        image.add(address);
 
         addressTextField = new JTextField();
         addressTextField.setBounds(300, 430, 300, 30);
         addressTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        add(addressTextField);
+        image.add(addressTextField);
 
         state = new JLabel("State : ");
         state.setBounds(100, 480, 300, 30);
         state.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(state);
+        image.add(state);
 
         stateTextField = new JTextField();
         stateTextField.setBounds(300, 480, 300, 30);
         stateTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        add(stateTextField);
+        image.add(stateTextField);
 
         city = new JLabel("City : ");
         city.setBounds(100, 530, 300, 30);
         city.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(city);
+        image.add(city);
 
         cityTextField = new JTextField();
         cityTextField.setBounds(300, 530, 300, 30);
         cityTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        add(cityTextField);
+        image.add(cityTextField);
 
         pin = new JLabel("Pin code: ");
         pin.setBounds(100, 580, 300, 30);
         pin.setFont(new Font("Raleway", Font.BOLD, 18));
-        add(pin);
+        image.add(pin);
 
         pinTextField = new JTextField();
         pinTextField.setBounds(300, 580, 300, 30);
         pinTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        add(pinTextField);
+        image.add(pinTextField);
 
         JCheckBox check = new JCheckBox("All the details should be filled according to AadharCard");
         check.setBounds(100, 630, 600, 30);
         check.setFont(new Font("Raleway", Font.BOLD, 18));
         check.setBackground(Color.WHITE);
-        add(check);
+        image.add(check);
 
         next = new JButton("Next");
         next.setBounds(500, 700, 100, 30);
@@ -170,7 +179,7 @@ public class SignupOne extends JFrame implements ActionListener {
         next.setBackground(Color.BLUE);
         next.setForeground(Color.WHITE);
         next.addActionListener(this);
-        add(next);
+        image.add(next);
 
         back = new JButton("back");
         back.setBounds(300, 700, 100, 30);
@@ -178,7 +187,7 @@ public class SignupOne extends JFrame implements ActionListener {
         back.setBackground(Color.BLACK);
         back.setForeground(Color.WHITE);
         back.addActionListener(this);
-        add(back);
+        image.add(back);
 
         setLayout(null);
         setSize(750, 800);
@@ -194,18 +203,16 @@ public class SignupOne extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String name=null,fname=null,dob=null,salary=null,address=null,city=null,
-                state=null,pin=null,gender=null;
 
-        name = nameTextField.getText();
-        fname = fnameTextField.getName();
-        dob = dobTextField.getText();
-         salary = salaryTextField.getText();
-         address = addressTextField.getText();
-        city = cityTextField.getText();
-         state = stateTextField.getText();
-         pin = pinTextField.getText();
-         gender = null;
+        String name = nameTextField.getText();
+        String fname = fnameTextField.getText();
+        String dob = dobTextField.getText();
+        String email = emailTextField.getText();
+        String address = addressTextField.getText();
+        String city = cityTextField.getText();
+        String state = stateTextField.getText();
+        String pin = pinTextField.getText();
+        String gender = null;
         if (male.isSelected()) {
             gender = "Male";
 
@@ -222,34 +229,44 @@ public class SignupOne extends JFrame implements ActionListener {
 
 //        --------------------------------------------------------------------
         if (e.getSource() == next) {
-          try
-          {
-              
-          
-            Conn conn=new Conn();
-            String query="insert into signup value(?,?,?,?,?,?,?,?,?,?,?)";
-            s=conn.c.prepareStatement(query);
-            s.setString(2, name);
-            s.setLong(1, formno);
-            s.setString(3, fname);
-            s.setString(4, dob);
-            s.setString(5, salary);
-            s.setString(6, gender);
-            s.setString(7, marital);
-            s.setString(8, address);
-            s.setString(9, state);
-            s.setString(10, city);
-            s.setString(11, pin);
-            s.executeUpdate();
             
+            if(name.isEmpty() || fname.isEmpty() || dob.isEmpty() || 
+                    email.isEmpty() || address.isEmpty()||city.isEmpty()
+                    ||gender==null||state.isEmpty()||pin.isEmpty() ||marital==null ){
             
-            
-          }
-          catch(Exception ex)
-          {
-              ex.printStackTrace();
-          }
-            
+                
+                JOptionPane.showMessageDialog(null,"All Fields should be filled ");
+
+            }
+            else
+            {
+               
+            try {
+
+                Conn conn = new Conn();
+                String query = "insert into signup value(?,?,?,?,?,?,?,?,?,?,?)";
+                s = conn.c.prepareStatement(query);
+                s.setString(2, name);
+                s.setLong(1, formno);
+                s.setString(3, fname);
+                s.setString(4, dob);
+                s.setString(5, email);
+                s.setString(6, gender);
+                s.setString(7, marital);
+                s.setString(8, address);
+                s.setString(9, state);
+                s.setString(10, city);
+                s.setString(11, pin);
+                s.executeUpdate();
+
+                setVisible(false);
+                new SignupTwo(formno).setVisible(true);
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            }
+
         }
 
         if (e.getSource() == back) {

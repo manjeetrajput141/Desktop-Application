@@ -14,8 +14,7 @@ public class Conn {
         c=DriverManager.getConnection("jdbc:mysql:///sunderdeep","root","Manjeet@123#");
         
 //        s=c.createStatement();
-        c.close();
-       
+        
         }
         catch(Exception e)
         {

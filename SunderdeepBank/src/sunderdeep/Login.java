@@ -13,64 +13,72 @@ public class Login extends JFrame implements ActionListener {
     JButton login, reset, signup;
 
     Login() {
-        ImageIcon i = new ImageIcon(ClassLoader.getSystemResource("icons/logo.jpg"));
-        Image i2 = i.getImage().getScaledInstance(100, 100, 60);
+         ImageIcon i = new ImageIcon(ClassLoader.getSystemResource("icons/login.jpg"));
+        Image i2 = i.getImage().getScaledInstance(900, 900, 60);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel img = new JLabel(i3);
-        img.setBounds(50, 25, 300, 100);
+        img.setBounds(0,0,800,450);
         add(img);
+        
+         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/ULogo.png"));
+        Image icon2 = i1.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+        ImageIcon icon3 = new ImageIcon(icon2);
+        JLabel label = new JLabel(icon3);
+        label.setBounds(250, 10, 150, 150);
+        img.add(label);
+
 
         JLabel heading1 = new JLabel("Welcome to ");
-        heading1.setBounds(380, 10, 300, 80);
-        heading1.setFont(new Font("Raleway", Font.BOLD, 30));
-        add(heading1);
+        heading1.setBounds(450, 10, 300, 80);
+        heading1.setFont(new Font("Raleway", Font.BOLD, 28));
+        img.add(heading1);
 
         JLabel heading = new JLabel(" Sunderdeep Bank");
-        heading.setBounds(330, 60, 300, 90);
-        heading.setFont(new Font("Raleway", Font.BOLD, 30));
-        add(heading);
+        heading.setBounds(400, 60, 300, 90);
+        heading.setFont(new Font("Raleway", Font.BOLD, 28));
+        img.add(heading);
 
         cardText = new JLabel(" Card No :");
-        cardText.setBounds(200, 170, 200, 30);
+        cardText.setBounds(300, 170, 200, 30);
         cardText.setFont(new Font("OSWALD", Font.BOLD, 24));
-        add(cardText);
+        img.add(cardText);
 
         cardTextField = new JTextField();
-        cardTextField.setBounds(400, 170, 240, 30);
+        cardTextField.setBounds(500, 170, 240, 30);
         cardTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        add(cardTextField);
+        img.add(cardTextField);
 
         pin = new JLabel(" PIN         :");
-        pin.setBounds(200, 220, 200, 30);
+        pin.setBounds(300, 220, 200, 30);
         pin.setFont(new Font("Raleway", Font.BOLD, 24));
-        add(pin);
+        img.add(pin);
         pinTextField = new JPasswordField();
-        pinTextField.setBounds(400, 220, 240, 30);
+        pinTextField.setBounds(500, 220, 240, 30);
         pinTextField.setFont(new Font("Arial", Font.BOLD, 18));
-        add(pinTextField);
+        img.add(pinTextField);
 
         login = new JButton("Login");
-        login.setBounds(400, 270, 100, 30);
+        login.setBounds(500, 270, 100, 30);
         login.setFont(new Font("Raleway", Font.PLAIN, 16));
         login.setBackground(Color.BLACK);
         login.setForeground(Color.WHITE);
-        add(login);
+        img.add(login);
 
         reset = new JButton("Cancel");
-        reset.setBounds(540, 270, 100, 30);
+        reset.setBounds(640, 270, 100, 30);
         reset.setFont(new Font("Raleway", Font.PLAIN, 16));
         reset.setBackground(Color.BLACK);
         reset.setForeground(Color.WHITE);
         reset.addActionListener(this);
-        add(reset);
+        img.add(reset);
 
         signup = new JButton("Sign Up");
-        signup.setBounds(400, 320, 240, 30);
+        signup.setBounds(500, 320, 240, 30);
         signup.setFont(new Font("Raleway", Font.PLAIN, 16));
         signup.setBackground(Color.BLACK);
         signup.setForeground(Color.WHITE);
         signup.addActionListener(this);
-        add(signup);
+        img.add(signup);
 
         setLayout(null);
         setSize(800, 450);
