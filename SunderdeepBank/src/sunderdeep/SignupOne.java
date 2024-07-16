@@ -18,6 +18,7 @@ public class SignupOne extends JFrame implements ActionListener {
 
     JButton next, back;
     Long formno;
+    JCheckBox check;
 
     public SignupOne() {
 
@@ -91,13 +92,13 @@ public class SignupOne extends JFrame implements ActionListener {
 
         male = new JRadioButton("Male  ");
         male.setBounds(300, 330, 100, 30);
-        male.setBackground(Color.WHITE);
+        male.setOpaque(false);
         male.setFont(new Font("Raleway", Font.BOLD, 18));
         image.add(male);
 
         female = new JRadioButton("Female  ");
         female.setBounds(450, 330, 200, 30);
-        female.setBackground(Color.WHITE);
+        female.setOpaque(false);
         female.setFont(new Font("Raleway", Font.BOLD, 18));
         image.add(female);
 
@@ -113,13 +114,13 @@ public class SignupOne extends JFrame implements ActionListener {
 
         married = new JRadioButton("Married  ");
         married.setBounds(300, 380, 130, 30);
-        married.setBackground(Color.WHITE);
+        married.setOpaque(false);
         married.setFont(new Font("Raleway", Font.BOLD, 18));
         image.add(married);
 
         unmarried = new JRadioButton("Unmarried ");
         unmarried.setBounds(450, 380, 200, 30);
-        unmarried.setBackground(Color.WHITE);
+        unmarried.setOpaque(false);
         unmarried.setFont(new Font("Raleway", Font.BOLD, 18));
         image.add(unmarried);
 
@@ -145,6 +146,7 @@ public class SignupOne extends JFrame implements ActionListener {
         stateTextField = new JTextField();
         stateTextField.setBounds(300, 480, 300, 30);
         stateTextField.setFont(new Font("Arial", Font.BOLD, 18));
+        
         image.add(stateTextField);
 
         city = new JLabel("City : ");
@@ -167,10 +169,10 @@ public class SignupOne extends JFrame implements ActionListener {
         pinTextField.setFont(new Font("Arial", Font.BOLD, 18));
         image.add(pinTextField);
 
-        JCheckBox check = new JCheckBox("All the details should be filled according to AadharCard");
+        check = new JCheckBox("All the details should be filled according to AadharCard");
         check.setBounds(100, 630, 600, 30);
         check.setFont(new Font("Raleway", Font.BOLD, 18));
-        check.setBackground(Color.WHITE);
+        check.setOpaque(false);
         image.add(check);
 
         next = new JButton("Next");
@@ -203,6 +205,8 @@ public class SignupOne extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        
 
         String name = nameTextField.getText();
         String fname = fnameTextField.getText();
@@ -238,6 +242,13 @@ public class SignupOne extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null,"All Fields should be filled ");
 
             }
+            else if(!check.isSelected())
+            {
+                  JOptionPane.showMessageDialog(null,"Please Check the Delcaration before submit");
+                
+            }
+                
+            
             else
             {
                

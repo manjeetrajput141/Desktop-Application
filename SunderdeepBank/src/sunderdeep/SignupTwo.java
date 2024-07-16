@@ -17,6 +17,7 @@ public class SignupTwo extends JFrame implements ActionListener {
     JComboBox religionTextField, categoryTextField, educationTextField,
             occupationTextField, salaryTextField, seniorTextField, existingTextField;
 
+    JCheckBox check;
     JButton next, back;
     Long formno;
 
@@ -145,10 +146,10 @@ public class SignupTwo extends JFrame implements ActionListener {
         existingTextField.setFont(new Font("Arial", Font.BOLD, 18));
         image.add(existingTextField);
 
-        JCheckBox check = new JCheckBox("All the details should be filled according to AadharCard");
+        check = new JCheckBox("All the details should be filled according to AadharCard");
         check.setBounds(100, 600, 600, 30);
         check.setFont(new Font("Raleway", Font.BOLD, 18));
-        check.setBackground(Color.WHITE);
+        check.setOpaque(false);
         image.add(check);
 
         next = new JButton("Next");
@@ -200,6 +201,11 @@ public class SignupTwo extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null,"All Fields should be filled ");
 
             }
+            else if(check.isSelected())
+            {
+                  JOptionPane.showMessageDialog(null,"Please Check the Delcaration before submit");
+                
+            }
             else
             {
                
@@ -222,7 +228,7 @@ public class SignupTwo extends JFrame implements ActionListener {
                 s.executeUpdate();
 
                 setVisible(false);
-            //    new SignupThree(formno).setVisible(true);
+                new SignupThree(formno).setVisible(true);
 
             } catch (SQLException ex) {
                 System.out.println(ex);
