@@ -160,7 +160,7 @@ public class SignupThree extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == next) {
-            boolean checkbox=c7.isSelected();
+            boolean checkbox = c7.isSelected();
             String accountType = null;
             if (b1.isSelected()) {
                 accountType = "Saving Account";
@@ -181,7 +181,6 @@ public class SignupThree extends JFrame implements ActionListener {
             String facility = "";
             if (c1.isSelected()) {
                 facility = facility + " ATM_Card";
-
             }
             if (c2.isSelected()) {
                 facility = facility + " Internet_Banking";
@@ -204,12 +203,8 @@ public class SignupThree extends JFrame implements ActionListener {
 
             }
             if (ae.getSource() == next) {
-                
-                if(checkbox)
-                {
-              
 
-               
+                if (checkbox) {
 
                     try {
                         Conn conn = new Conn();
@@ -224,19 +219,16 @@ public class SignupThree extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(null, "Card Number :" + cardnumber + "\nPin :" + pinnumber);
 
                         setVisible(false);
-                        new signupfour(cardnumber,pinnumber).setVisible(true);
+                        new signupfour(cardnumber, pinnumber).setVisible(true);
 
                     } catch (Exception e) {
                         System.out.print(e);
 
                     }
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null,"Pleack Check the Declaration before submit");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Pleack Check the Declaration before submit");
                 }
 
-                
             }
 
         } else if (ae.getSource() == cancel) {
