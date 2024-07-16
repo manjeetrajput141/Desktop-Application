@@ -224,7 +224,7 @@ public class SignupThree extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(null, "Card Number :" + cardnumber + "\nPin :" + pinnumber);
 
                         setVisible(false);
-                        //   new signupfour(cardnumber,pinnumber).setVisible(true);
+                        new signupfour(cardnumber,pinnumber).setVisible(true);
 
                     } catch (Exception e) {
                         System.out.print(e);
