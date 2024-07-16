@@ -196,7 +196,7 @@ public class SignupTwo extends JFrame implements ActionListener {
 
             JOptionPane.showMessageDialog(null, "All Fields should be filled ");
 
-        } else if (check.isSelected()) {
+        } else if (!check.isSelected()) {
             JOptionPane.showMessageDialog(null, "Please Check the Delcaration before submit");
 
         } else {
