@@ -177,7 +177,8 @@ public class SignupThree extends JFrame implements ActionListener {
 
             Random random = new Random();
             String cardnumber = "" + Math.abs((random.nextLong() % 9000000L) + 5690192020000000L);
-            String pinnumber = "" + Math.abs((random.nextLong() % 9000L) + 1000L);
+            Long pinnumber =  Math.abs((random.nextLong() % 9000L)) + 1000L;
+            
             String facility = "";
             if (c1.isSelected()) {
                 facility = facility + " ATM_Card";
@@ -219,7 +220,7 @@ public class SignupThree extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(null, "Card Number :" + cardnumber + "\nPin :" + pinnumber);
 
                         setVisible(false);
-                        new signupfour(cardnumber, pinnumber).setVisible(true);
+                        new signupfour(cardnumber, pinnumber,accountType).setVisible(true);
 
                     } catch (Exception e) {
                         System.out.print(e);

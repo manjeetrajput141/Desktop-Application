@@ -6,18 +6,21 @@ import java.awt.event.*;
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.util.Random;
 
 public class signupfour extends JFrame implements ActionListener {
 
-    PreparedStatement ps;
+    PreparedStatement ps, ps2;
 
     JButton deposit, back;
-    String pinnumber, cardnumber;
+    long pinnumber;
+    String cardnumber,accountType;
     JTextField amount;
 
-    signupfour(String cardnumber, String pinnumber) {
+    signupfour(String cardnumber, long pinnumber,String accountType) {
         this.cardnumber = cardnumber;
         this.pinnumber = pinnumber;
+        this.accountType=accountType;
 
         // JOptionPane.showMessageDialog(null,"Card Number'"+cardnumber+"'Pin :'"+pinnumber+"'");
         this.pinnumber = pinnumber;
@@ -27,7 +30,7 @@ public class signupfour extends JFrame implements ActionListener {
         JLabel image = new JLabel(i3);
         image.setBounds(0, 0, 900, 900);
         add(image);
-        
+
         ImageIcon icon1 = new ImageIcon(ClassLoader.getSystemResource("icons/ULogo.png"));
         Image icon2 = icon1.getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT);
         ImageIcon icon3 = new ImageIcon(icon2);
@@ -36,7 +39,7 @@ public class signupfour extends JFrame implements ActionListener {
         image.add(label);
 
         JLabel heading = new JLabel(" Sunderdeep Bank ATM");
-        heading.setBounds(350, 60,400, 90);
+        heading.setBounds(350, 60, 400, 90);
         heading.setFont(new Font("Raleway", Font.BOLD, 30));
         image.add(heading);
 
@@ -84,17 +87,34 @@ public class signupfour extends JFrame implements ActionListener {
         }
         if (ae.getSource() == deposit) {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            System.out.println(dtf.format(now));
+            String date = LocalDateTime.now().format(dtf);
+            System.out.println(date);
 
-            String a = amount.getText();
-            String mode = "Deposit";
-            String transaction = "Insert into bank values('" + cardnumber + "','" + pinnumber + "','" + a + "','" + a + "','" + now + "','" + mode + "')";
+            String samount = amount.getText();
+            String mode="deposit";
+            String query = "Insert into bank values(?,?,?,?,?,?)";
+            String query2 = "Insert into transaction values(?,?,?,?,?,?)";
 
             try {
                 Conn conn = new Conn();
-                ps = conn.c.prepareStatement(transaction);
+                ps = conn.c.prepareStatement(query);
+                ps.setString(1, cardnumber);
+                ps.setLong(2, pinnumber);
+                ps.setString(3, samount);
+                ps.setString(4, samount);
+                ps.setString(5, date);
+                ps.setString(6, accountType);
                 ps.executeUpdate();
+
+                ps2 = conn.c.prepareStatement(query2);
+                Random r = new Random();
+                long tId = Math.abs(r.nextLong());
+                ps2.setString(1, cardnumber);
+                ps2.setLong(2, tId);
+                ps2.setString(3, mode);
+                ps2.setInt(6, Integer.parseInt(samount));
+                ps2.setInt(5, Integer.parseInt(samount));
+                ps2.setString(4, date);
 
             } catch (SQLException e) {
                 System.out.print(e);
@@ -104,7 +124,7 @@ public class signupfour extends JFrame implements ActionListener {
     }
 
     public static void main(String args[]) {
-        new signupfour("", "");
+        new signupfour("", 9L,"");
     }
 
 }

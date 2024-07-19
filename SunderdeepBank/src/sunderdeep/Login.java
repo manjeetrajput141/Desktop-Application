@@ -1,9 +1,9 @@
-
 package sunderdeep;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.sql.*;
 
 public class Login extends JFrame implements ActionListener {
 
@@ -11,22 +11,22 @@ public class Login extends JFrame implements ActionListener {
     JTextField cardTextField;
     JPasswordField pinTextField;
     JButton login, reset, signup;
+    String username;
 
     Login() {
-         ImageIcon i = new ImageIcon(ClassLoader.getSystemResource("icons/login.jpg"));
+        ImageIcon i = new ImageIcon(ClassLoader.getSystemResource("icons/login.jpg"));
         Image i2 = i.getImage().getScaledInstance(900, 900, 60);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel img = new JLabel(i3);
-        img.setBounds(0,0,800,450);
+        img.setBounds(0, 0, 800, 450);
         add(img);
-        
-         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/ULogo.png"));
+
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/ULogo.png"));
         Image icon2 = i1.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT);
         ImageIcon icon3 = new ImageIcon(icon2);
         JLabel label = new JLabel(icon3);
         label.setBounds(250, 10, 150, 150);
         img.add(label);
-
 
         JLabel heading1 = new JLabel("Welcome to ");
         heading1.setBounds(450, 10, 300, 80);
@@ -62,6 +62,7 @@ public class Login extends JFrame implements ActionListener {
         login.setFont(new Font("Raleway", Font.PLAIN, 16));
         login.setBackground(Color.BLACK);
         login.setForeground(Color.WHITE);
+        login.addActionListener(this);
         img.add(login);
 
         reset = new JButton("Cancel");
@@ -85,29 +86,56 @@ public class Login extends JFrame implements ActionListener {
         setLocation(300, 200);
         getContentPane().setBackground(Color.WHITE);
         setVisible(true);
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == login) {
+            String cardNumber = cardTextField.getText();
+            long pinNumber = Long.parseLong(pinTextField.getText());
+
+            Conn conn = new Conn();
+            String query = "select * from login where cardnumber=? and pinnumber=?";
+            try {
+                PreparedStatement ps = conn.c.prepareStatement(query);
+                ps.setString(1, cardNumber);
+                ps.setLong(2, pinNumber);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int formno = rs.getInt("formno");
+                    System.out.println("Form No: " + formno);
+                    String q = "select * from signup where formno=?";
+                    PreparedStatement pstmt = conn.c.prepareStatement(q);
+                    pstmt.setInt(1, formno);
+                    ResultSet result = pstmt.executeQuery();
+                    if (result.next()) {
+                        this.username = result.getString("name");
+                        //        System.out.println(username);
+                        //    System.out.println("There is result ");
+                    }
+                    setVisible(false);
+                    new Transcation(username, cardNumber, pinNumber)
+                            .setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect Card Number or Pin");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
 
         } else if (e.getSource() == reset) {
             cardTextField.setText("");
             pinTextField.setText("");
         } else if (e.getSource() == signup) {
-            
+
             setVisible(false);
-            SignupOne signup=new SignupOne();
+            SignupOne signup = new SignupOne();
             signup.setVisible(true);
-
         }
-
     }
 
     public static void main(String[] args) {
         new Login();
     }
-
 }
