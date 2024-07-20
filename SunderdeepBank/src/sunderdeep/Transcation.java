@@ -136,8 +136,7 @@ public class Transcation extends JFrame implements ActionListener{
             new MiniStatement(username, cardnumber, pinnumber).setVisible(true);            
         }
         
-    }
-    
+    }   
     public static void main(String args[])
     {
         new Transcation(""
