@@ -132,7 +132,8 @@ public class Transcation extends JFrame implements ActionListener{
         }
         if(ae.getSource()==mini)
         {
-            
+            setVisible(false);
+            new MiniStatement(username, cardnumber, pinnumber).setVisible(true);            
         }
         
     }
