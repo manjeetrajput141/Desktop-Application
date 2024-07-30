@@ -12,7 +12,8 @@ and just need a MySql Database
 
 Run these command on your MySQLWorkbench/MySql Command Line Client
 
-Create Database sunderdeep;
+create Database sunderdeep;
+
 use sunderdeep;
 
 //Create table Signup
