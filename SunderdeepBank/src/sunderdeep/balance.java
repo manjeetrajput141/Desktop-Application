@@ -72,7 +72,7 @@ public class balance extends JFrame implements ActionListener
         if(ae.getSource()==exit)
         {
             setVisible(false);
-            new Transcation(username,cardnumber,pinnumber).setVisible(true);
+            new Transaction(username,cardnumber,pinnumber).setVisible(true);
            
         }
     }

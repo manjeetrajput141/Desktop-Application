@@ -74,7 +74,7 @@ public class pinchange extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == back) {
             setVisible(false);
-            new Transcation(username, cardnumber, pinnumber).setVisible(true);
+            new Transaction(username, cardnumber, pinnumber).setVisible(true);
         } else if (ae.getSource() == change) {
             this.p = Integer.parseInt(pin.getText());
             this.rp=Integer.parseInt(repin.getText());

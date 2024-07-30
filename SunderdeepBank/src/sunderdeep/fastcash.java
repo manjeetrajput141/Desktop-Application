@@ -1,13 +1,12 @@
 package sunderdeep;
 
-import com.mysql.cj.TransactionEventHandler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Random;
 
 public class fastcash extends JFrame implements ActionListener {
@@ -106,7 +105,7 @@ public class fastcash extends JFrame implements ActionListener {
                 if (balance < amount) {
                     JOptionPane.showMessageDialog(null, "Transaction Failed || Insufficient Balance");
                     setVisible(false);
-                    new Transcation(username, cardnumber, pinnumber).setVisible(true);
+                    new Transaction(username, cardnumber, pinnumber).setVisible(true);
 
                 } else {
                     balance = balance - amount;
@@ -130,7 +129,7 @@ public class fastcash extends JFrame implements ActionListener {
 
                     JOptionPane.showMessageDialog(null, "Amount Withdraw Succefffully");
                     setVisible(false);
-                    new Transcation(username, cardnumber, pinnumber).setVisible(true);
+                    new Transaction(username, cardnumber, pinnumber).setVisible(true);
 
                 }
             } catch (Exception e) {

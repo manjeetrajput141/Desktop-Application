@@ -7,13 +7,13 @@ import java.awt.event.*;
 import java.sql.*;
 
 
-public class Transcation extends JFrame implements ActionListener{
+public class Transaction extends JFrame implements ActionListener{
    JButton deposit,withdraw,fastcash,balance,pinchange,mini,b7; 
    Long pinnumber;
    String cardnumber;
    String username;
     
-    Transcation(String username,String cardnumber,Long pinnumber)
+    Transaction(String username,String cardnumber,Long pinnumber)
     {
         this.username=username;
        
@@ -139,7 +139,7 @@ public class Transcation extends JFrame implements ActionListener{
     }   
     public static void main(String args[])
     {
-        new Transcation(""
+        new Transaction(""
                         ,"",0L);
     }
     

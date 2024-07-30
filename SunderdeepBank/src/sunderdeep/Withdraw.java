@@ -1,6 +1,5 @@
 package sunderdeep;
 
-import com.mysql.cj.TransactionEventHandler;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -64,7 +63,7 @@ public class Withdraw extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == back) {
             setVisible(false);
-            new Transcation(username, cardnumber, pinnumber).setVisible(true);
+            new Transaction(username, cardnumber, pinnumber).setVisible(true);
         }
         if (ae.getSource() == withdraw) {
             try {
@@ -85,7 +84,7 @@ public class Withdraw extends JFrame implements ActionListener {
                 if (ae.getSource() != back && balance < Integer.parseInt(amount)) {
                     JOptionPane.showMessageDialog(null, "Transaction Failed || Insufficient Balance");
                     setVisible(false);
-                    new Transcation(username, cardnumber, pinnumber).setVisible(true);
+                    new Transaction(username, cardnumber, pinnumber).setVisible(true);
                     
 
                 } else {
@@ -108,7 +107,7 @@ public class Withdraw extends JFrame implements ActionListener {
                     ps2.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Amount Withdraw Succefffully");
                     setVisible(false);
-                    new Transcation(username, cardnumber, pinnumber).setVisible(true);
+                    new Transaction(username, cardnumber, pinnumber).setVisible(true);
                      
 
                 }

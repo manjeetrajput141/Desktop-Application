@@ -60,7 +60,7 @@ public class Deposit extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == back) {
             setVisible(false);
-            new Transcation(username, cardnumber, pinnumber).setVisible(true);
+            new Transaction(username, cardnumber, pinnumber).setVisible(true);
         }
         if (ae.getSource() == deposit) {
             try {
@@ -115,7 +115,7 @@ public class Deposit extends JFrame implements ActionListener {
                 ps2.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Amount Deposit Succefffully");
                 setVisible(false);
-                new Transcation(username, cardnumber, pinnumber).setVisible(true);
+                new Transaction(username, cardnumber, pinnumber).setVisible(true);
 
             } catch (Exception e) {
                 System.out.println(e);
